@@ -1,6 +1,8 @@
 package com.leo.test.pure.jdbc.util;
 
 import java.sql.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Created by Senchenko Viktor on 26.09.2016.
@@ -14,11 +16,13 @@ public class JdbcUtil {
 
     private static final String DB_PASSWORD = "ZbXUXsFYdVuysNG3";
 
+    private static final Logger LOGGER = Logger.getLogger(JdbcUtil.class.getSimpleName());
+
     static {
         try {
             Class.forName(DB_DRIVER);
         } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+            LOGGER.log(Level.SEVERE, "Driver not found", e);
         }
     }
 
@@ -26,7 +30,7 @@ public class JdbcUtil {
         try {
             return DriverManager.getConnection(DB_CONNECTION, DB_USER, DB_PASSWORD);
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOGGER.log(Level.SEVERE, "Connection can't be created", e);
         }
         return null;
     }
@@ -37,7 +41,7 @@ public class JdbcUtil {
              ResultSet resultSet = resultSet(statement)) {
             return resultMapper.map(resultSet);
         } catch (SQLException e) {
-            e.printStackTrace();
+            LOGGER.log(Level.SEVERE, "Error processing query " + query, e);
         }
         return null;
     }

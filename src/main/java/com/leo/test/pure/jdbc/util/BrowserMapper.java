@@ -5,11 +5,15 @@ import com.leo.test.pure.jdbc.model.Browser;
 import javax.json.Json;
 import javax.json.JsonObject;
 import java.io.StringReader;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Created by Senchenko Viktor on 26.09.2016.
  */
 public class BrowserMapper {
+
+    private static final Logger LOGGER = Logger.getLogger(BrowserMapper.class.getSimpleName());
 
     public static String toString(Browser browser) {
         return appendBuilder(browser, new StringBuilder()).toString();
@@ -39,7 +43,7 @@ public class BrowserMapper {
             if (browserObject.getBrowser() != null && browserObject.getCssGrade() != null && browserObject.getEngine() != null && browserObject.getEngineVersion() != null && browserObject.getPlatform() != null)
                 return browserObject;
         } catch (NullPointerException e) {
-            e.printStackTrace();
+            LOGGER.log(Level.FINE, "Bad request \"{0}\"", browser);
         }
         return null;
     }

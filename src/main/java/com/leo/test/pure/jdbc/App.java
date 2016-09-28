@@ -10,7 +10,7 @@ import java.util.Set;
 /**
  * Created by Senchenko Viktor on 26.09.2016.
  */
-@ApplicationPath("/pure-jdbc")
+@ApplicationPath("pure-jdbc")
 public class App extends Application {
     @Override
     public Set<Object> getSingletons() {

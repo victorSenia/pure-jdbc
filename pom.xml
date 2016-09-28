@@ -8,7 +8,7 @@
     <artifactId>pure.jdbc</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
-    <name>pure.jdbc</name>
+    <name>pure-jdbc</name>
 
     <dependencies>
 
